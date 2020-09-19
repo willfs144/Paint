@@ -19,15 +19,14 @@ public class Sistema {
 		this.figura = new Figura(posicionX1, posicionY1, tipo);
 	}
 	
-	public void calcularLadosFiguraCuadratica() {
+	public void calcularLadosFiguraCuadratica() {		
+		int x = Math.min(this.figura.getPosicionX1(),this.figura.getAncho());
+		int y = Math.min(this.figura.getPosicionY1(), this.figura.getAncho());
+		int width = Math.abs(this.figura.getPosicionX1() -this.figura.getAncho());
+		int height = Math.abs(this.figura.getPosicionY1() -this.figura.getAlto());
 		
-		int x = Math.min(this.figura.getx1(),this.figura.getAncho());
-		int y = Math.min(this.figura.gety1(), this.figura.getAncho());
-		int width = Math.abs(this.figura.getx1() -this.figura.getAncho());
-		int height = Math.abs(this.figura.gety1() -this.figura.getAlto());
-		
-		this.figura.setx1(x);
-		this.figura.sety1(y);
+		this.figura.setPosicionX1(x);
+		this.figura.setPosicionY1(y);
 		this.figura.setAncho(width);
 		this.figura.setAlto(height);
 	}		

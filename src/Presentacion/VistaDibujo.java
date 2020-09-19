@@ -36,39 +36,26 @@ public class VistaDibujo extends Canvas{
 		this.draw= (Graphics2D) g;
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+		draw.setColor(figura.getColor());
 		
-		
-		if (figura.getTipo() == modelo.FIGURA_LINEA) {			
-			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
-			draw.setColor(figura.getColor());
-			draw.drawLine(figura.getx1(),figura.gety1(), figura.getAncho(), figura.getAlto());			
-		}
-		
-
-		if (figura.getTipo() == modelo.FIGURA_LAPIZ) {	
-			if (forma != null) {
-				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
-				draw.setColor(figura.getColor());
+		if (figura.getTipo() == modelo.FIGURA_LAPIZ && forma != null) {			
 				this.forma.moveTo(figura.getAncho(), figura.getAlto());
 				draw.draw(forma);				
-				System.out.println(figura.getAncho()+"  "+ figura.getAlto());
-			}
-			
 		}
 		
+		if (figura.getTipo() == modelo.FIGURA_LINEA) {			
+			draw.drawLine(figura.getPosicionX1(),figura.getPosicionY1(), figura.getAncho(), figura.getAlto());			
+		}
 		
 		if (figura.getTipo() == modelo.FIGURA_RECTANGULO) {
-			System.out.println(modelo.FIGURA_RECTANGULO);
-			draw.setColor(figura.getColor());
-			draw.draw(new Rectangle(figura.getx1(), figura.gety1(), figura.getAncho(), figura.getAlto()));
+			draw.draw(new Rectangle(figura.getPosicionX1(), figura.getPosicionY1(), figura.getAncho(), figura.getAlto()));
 		}
 		
 		if(this.evento == "Limpiar") {
 			draw.setPaint(Color.white);
 			draw.fillRect(0, 0, this.getWidth(), this.getHeight());
-			draw.setPaint(Color.black);
 			this.evento = "";
-			this.forma = new Path2D.Float();
 		}
 		
 		
@@ -80,7 +67,7 @@ public class VistaDibujo extends Canvas{
 	
 	public void iniciarDibujo() {
 		this.forma = new Path2D.Float();
-		this.forma.moveTo(figura.getAncho(), figura.getAlto());
+		this.forma.moveTo(figura.getAncho(), figura.getAlto());		
 	}
 	
 	
@@ -103,6 +90,9 @@ public class VistaDibujo extends Canvas{
 		this.figura = figura;
 		
 	}
+
+
+	
 	
 	
 	

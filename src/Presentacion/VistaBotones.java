@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.event.AncestorListener;
 
@@ -31,6 +32,9 @@ public class VistaBotones extends JPanel{
 	private JButton btnLapiz;
 	private JButton btnBorrador;
 	private JButton btnRectangulo;
+	
+	private JSlider jSliGrosor;
+	private JLabel  jLabGrosor;
 	
 	private Modelo modelo;
 	private ControladorBotones controlEventosBotones;
@@ -138,7 +142,17 @@ public class VistaBotones extends JPanel{
 		
 		btnLimpiar = new JButton("Clear");
 		this.add(btnLimpiar);
-		btnLimpiar.addActionListener(controlEventosBotones);		
+		btnLimpiar.addActionListener(controlEventosBotones);
+		
+		jSliGrosor = new JSlider(JSlider.HORIZONTAL, 0, 50, 1);
+		jSliGrosor.setMajorTickSpacing(25);
+		jSliGrosor.setPaintTicks(true);
+		jSliGrosor.setPreferredSize(new Dimension(40, 40));
+		this.add(jSliGrosor);
+		jSliGrosor.addChangeListener(controlEventosBotones);
+		
+		jLabGrosor = new JLabel("1");
+		this.add(jLabGrosor);
 
 	}	
 
@@ -236,6 +250,19 @@ public class VistaBotones extends JPanel{
 	public JButton getBtnRectangulo() {
 		return btnRectangulo;
 	}
+
+	public JSlider getjSliGrosor() {
+		return jSliGrosor;
+	}
+
+	
+	public JLabel getjLabGrosor() {
+		return jLabGrosor;
+	}
+
+	
+	
+	
 	
 	
 	

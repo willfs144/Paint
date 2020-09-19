@@ -24,18 +24,20 @@ public class Modelo {
 	private VistaDibujo vistaDibujo;
 	private VistaPrincipal vistaPrincipal;
 	private Sistema sistema;
+	
 	private String tipoFigura;
 	private Color color;
+	private int grosorLinea;
 
 	public void iniciar() {
 		this.tipoFigura = FIGURA_LAPIZ;
 		this.color = Color.black;
 
 		this.vistaPrincipal = new VistaPrincipal(this);
-		this.vistaPrincipal.setSize(950, 700);
+		this.vistaPrincipal.setSize(980, 700);
 		this.vistaPrincipal.setVisible(true);		
 		this.vistaDibujo = vistaPrincipal.getVistaDibujo();
-		this.sistema = new Sistema(tipoFigura);
+		this.sistema = new Sistema("");
 		this.vistaDibujo.setFigura(sistema.getFigura());
 		
 	}
@@ -52,6 +54,7 @@ public class Modelo {
 			if(tipoFigura ==  FIGURA_LAPIZ )
 				this.vistaDibujo.iniciarDibujo();				
 		this.sistema.getFigura().setColor(this.color);
+		this.sistema.getFigura().setGrosorBorde(this.grosorLinea);
 	}
 	
 	public void dibujarFigura(int ancho, int alto) {
@@ -62,14 +65,15 @@ public class Modelo {
 		else if(tipoFigura == FIGURA_LAPIZ) {
 			this.vistaDibujo.moverLinea();
 		}
-		this.vistaDibujo.setFigura(this.sistema.getFigura());
 		this.vistaDibujo.repaint(); 
+		this.vistaDibujo.setFigura(this.sistema.getFigura());		
+	
 	}
 	
 	
 	
 	public void grosorBordeFigura(int grosorBorde) {
-		this.sistema.getFigura().setGrosorBorde(grosorBorde);
+		this.grosorLinea = grosorBorde;
 	}
 	
 	public void tipoFigura(String tipoFigura) {

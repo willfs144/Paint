@@ -5,8 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JColorChooser;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class ControladorBotones implements ActionListener{
+public class ControladorBotones implements ActionListener,ChangeListener{
 
 	private VistaBotones vistaBotones;
 	private Modelo modelo;
@@ -62,6 +64,15 @@ public class ControladorBotones implements ActionListener{
 				color = (Color.WHITE);
 			modelo.picker(color);
 		}*/
+		
+	}
+
+
+	@Override
+	public void stateChanged(ChangeEvent evento) {		
+		this.vistaBotones.getjLabGrosor().setText(String.format("%s",
+				this.vistaBotones.getjSliGrosor().getValue()));
+		this.modelo.grosorBordeFigura(this.vistaBotones.getjSliGrosor().getValue());
 		
 	}
 

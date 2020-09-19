@@ -5,28 +5,30 @@ import java.awt.Color;
 public class Elemento {
 	
 
-	private int x1;
-	private int y1;
+	private int posicionX1;
+	private int posicionY1;
 	
-	
-	public Elemento(int x1, int y1) {
-		this.x1 = x1;
-		this.y1 = y1;
-	}
-	
-	public int getx1() {
-		return x1;
-	}
-	public void setx1(int x1) {
-		this.x1 = x1;
-	}
-	public int gety1() {
-		return y1;
-	}
-	public void sety1(int y1) {
-		this.y1 = y1;
+	public Elemento(int posicionX1, int posicionY1) {
+		this.posicionX1 = posicionX1;
+		this.posicionY1 = posicionY1;
 	}
 
+	public int getPosicionX1() {
+		return posicionX1;
+	}
+
+	public void setPosicionX1(int posicionX1) {
+		this.posicionX1 = posicionX1;
+	}
+
+	public int getPosicionY1() {
+		return posicionY1;
+	}
+
+	public void setPosicionY1(int posicionY1) {
+		this.posicionY1 = posicionY1;
+	}
+	
 	
 	
 	

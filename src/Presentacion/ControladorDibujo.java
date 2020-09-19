@@ -37,12 +37,12 @@ public class ControladorDibujo extends JPanel implements MouseListener, MouseMot
 
 	@Override
 	public void mouseClicked(MouseEvent e) {		
-	
+		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -55,12 +55,12 @@ public class ControladorDibujo extends JPanel implements MouseListener, MouseMot
 	@Override
 	public void mousePressed(MouseEvent e) {
 		modelo.crearFigura(e.getX(), e.getY());
-		
+	
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+	
 		
 	}
 
