@@ -41,17 +41,18 @@ public class VistaDibujo extends Canvas{
 		if (figura.getTipo() == modelo.FIGURA_LINEA) {			
 			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 			draw.setColor(figura.getColor());
-			draw.drawLine(figura.getx1(),figura.gety1(), figura.getAncho(), figura.getAlto());
-			
+			draw.drawLine(figura.getx1(),figura.gety1(), figura.getAncho(), figura.getAlto());			
 		}
 		
 
-		if (figura.getTipo() == modelo.FIGURA_LAPIZ) {			
-			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
-			draw.setColor(figura.getColor());
-			this.forma.moveTo(figura.getAncho(), figura.getAlto());
-			draw.draw(forma);
-			System.out.println(figura.getAncho()+"  "+ figura.getAlto());
+		if (figura.getTipo() == modelo.FIGURA_LAPIZ) {	
+			if (forma != null) {
+				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+				draw.setColor(figura.getColor());
+				this.forma.moveTo(figura.getAncho(), figura.getAlto());
+				draw.draw(forma);				
+				System.out.println(figura.getAncho()+"  "+ figura.getAlto());
+			}
 			
 		}
 		
@@ -79,7 +80,7 @@ public class VistaDibujo extends Canvas{
 	
 	public void iniciarDibujo() {
 		this.forma = new Path2D.Float();
-		this.forma.moveTo(figura.getx1(), figura.gety1());
+		this.forma.moveTo(figura.getAncho(), figura.getAlto());
 	}
 	
 	

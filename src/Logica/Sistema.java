@@ -15,9 +15,6 @@ public class Sistema {
 	}
 
 
-
-	
-	
 	public void crearFigura(int posicionX1, int posicionY1, String tipo) {
 		this.figura = new Figura(posicionX1, posicionY1, tipo);
 	}

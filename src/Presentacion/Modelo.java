@@ -47,7 +47,7 @@ public class Modelo {
 	
 	
 	
-	public void crearFigura(int posicionX1, int posicionY1) {		
+	public void crearFigura(int posicionX1, int posicionY1) {
 		this.sistema.crearFigura(posicionX1, posicionY1, this.tipoFigura);
 			if(tipoFigura ==  FIGURA_LAPIZ )
 				this.vistaDibujo.iniciarDibujo();				
