@@ -40,7 +40,6 @@ public class VistaDibujo extends Canvas{
 		draw.setColor(figura.getColor());
 		
 		if (figura.getTipo() == modelo.FIGURA_LAPIZ && forma != null) {			
-				this.forma.moveTo(figura.getAncho(), figura.getAlto());
 				draw.draw(forma);				
 		}
 		
@@ -67,7 +66,7 @@ public class VistaDibujo extends Canvas{
 	
 	public void iniciarDibujo() {
 		this.forma = new Path2D.Float();
-		this.forma.moveTo(figura.getAncho(), figura.getAlto());		
+		this.forma.moveTo(figura.getPosicionX1(), figura.getPosicionY1());		
 	}
 	
 	

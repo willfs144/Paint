@@ -37,11 +37,10 @@ public class Modelo {
 		this.vistaPrincipal.setSize(980, 700);
 		this.vistaPrincipal.setVisible(true);		
 		this.vistaDibujo = vistaPrincipal.getVistaDibujo();
-		this.sistema = new Sistema("");
+		this.sistema = new Sistema(FIGURA_LAPIZ);
 		this.vistaDibujo.setFigura(sistema.getFigura());
 		
-	}
-	
+	}	
 	
 	public void colorear(String Evento) {
 		
@@ -51,8 +50,10 @@ public class Modelo {
 	
 	public void crearFigura(int posicionX1, int posicionY1) {
 		this.sistema.crearFigura(posicionX1, posicionY1, this.tipoFigura);
-			if(tipoFigura ==  FIGURA_LAPIZ )
+			if(tipoFigura ==  FIGURA_LAPIZ ){
+				this.vistaDibujo.setFigura(this.sistema.getFigura());
 				this.vistaDibujo.iniciarDibujo();				
+			}
 		this.sistema.getFigura().setColor(this.color);
 		this.sistema.getFigura().setGrosorBorde(this.grosorLinea);
 	}
@@ -64,9 +65,9 @@ public class Modelo {
 			this.sistema.calcularLadosFiguraCuadratica();
 		else if(tipoFigura == FIGURA_LAPIZ) {
 			this.vistaDibujo.moverLinea();
-		}
+		}		
+		this.vistaDibujo.setFigura(this.sistema.getFigura());
 		this.vistaDibujo.repaint(); 
-		this.vistaDibujo.setFigura(this.sistema.getFigura());		
 	
 	}
 	
