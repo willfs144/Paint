@@ -87,19 +87,23 @@ public class Modelo {
 	
 	public void crearFigura(int posicionX1, int posicionY1) {		
 		this.sistema.crearFigura(posicionX1, posicionY1, this.tipoFigura);
-			if(tipoFigura ==  FIGURA_LAPIZ){				
-				gurdarDibujoLapiz();
-				actualizarTablero();
-				this.vistaDibujo.setForma(null);
-				this.vistaDibujo.iniciarDibujo();				
-			}
-			else if (tipoFigura == ELEMENTO_TEXTO) 
-				actualizarTablero();	
-			
 		this.sistema.getFigura().setColor(this.color);
 		this.sistema.getFigura().setGrosorBorde(this.grosorLinea);
 		this.sistema.getFigura().setContexto(this.contextoFigura);
-		guardarFigura();
+			if(tipoFigura ==  FIGURA_LAPIZ){
+				guardarFigura();
+				gurdarDibujoLapiz();
+				this.vistaDibujo.setForma(null);
+				actualizarTablero();				
+				this.vistaDibujo.iniciarDibujo();				
+			}
+			else if (tipoFigura == ELEMENTO_TEXTO) 
+				actualizarTablero();
+			if (tipoFigura ==  FIGURA_LAPIZ) {
+				
+			}
+			else
+				guardarFigura();
 		
 	}	
 
@@ -153,10 +157,10 @@ public class Modelo {
 	}
 	
 
-	private void actualizarTablero() {
-		this.vistaDibujo.setShapes(this.sistema.getShapes());
+	private void actualizarTablero() {		
 		this.vistaDibujo.setFiguras(this.sistema.getFiguras());
 		this.vistaDibujo.setFigura(this.sistema.getFigura());
+		this.vistaDibujo.setShapes(this.sistema.getShapes());
 		this.vistaDibujo.repaint();	
 		
 	}

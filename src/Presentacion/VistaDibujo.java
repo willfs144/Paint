@@ -39,11 +39,11 @@ public class VistaDibujo extends Canvas{
 		draw.setColor(Color.WHITE);
 		draw.fillRect(0, 0, this.getWidth(), this.getHeight());		
 		
-		if (!forma.equals(null)) {				
+		if (this.forma.getBounds() != null) {				
 			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 			draw.setColor(figura.getColor());
 			draw.draw(forma);					
-		}
+		}		
 		
 		int index=0;
 		for (Figura figura: figuras) {

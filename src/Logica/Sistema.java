@@ -33,7 +33,7 @@ public class Sistema {
 	
 	public void calcularLadosFiguraCuadratica() {		
 		int x = Math.min(this.figura.getPosicionX1(),this.figura.getAncho());
-		int y = Math.min(this.figura.getPosicionY1(), this.figura.getAncho());
+		int y = Math.min(this.figura.getPosicionY1(), this.figura.getAlto());
 		int width = Math.abs(this.figura.getPosicionX1() -this.figura.getAncho());
 		int height = Math.abs(this.figura.getPosicionY1() -this.figura.getAlto());
 		
