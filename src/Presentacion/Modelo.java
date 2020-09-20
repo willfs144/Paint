@@ -37,9 +37,10 @@ public class Modelo {
 		this.vistaPrincipal.setSize(980, 700);
 		this.vistaPrincipal.setVisible(true);		
 		this.vistaDibujo = vistaPrincipal.getVistaDibujo();
-		this.sistema = new Sistema(FIGURA_LAPIZ);
+		this.sistema = new Sistema();
+		this.sistema.crearFigura(0, 0, FIGURA_LAPIZ);
 		this.vistaDibujo.setFigura(sistema.getFigura());
-		
+		this.vistaDibujo.setFigura(sistema.getFiguras());
 	}	
 	
 	public void colorear(String Evento) {
@@ -48,16 +49,19 @@ public class Modelo {
 	
 	
 	
-	public void crearFigura(int posicionX1, int posicionY1) {
+	public void crearFigura(int posicionX1, int posicionY1) {		
 		this.sistema.crearFigura(posicionX1, posicionY1, this.tipoFigura);
 			if(tipoFigura ==  FIGURA_LAPIZ ){
-				this.vistaDibujo.setFigura(this.sistema.getFigura());
+				gurdarDibujoLapiz();				
+				actualizarTablero();
 				this.vistaDibujo.iniciarDibujo();				
 			}
 		this.sistema.getFigura().setColor(this.color);
 		this.sistema.getFigura().setGrosorBorde(this.grosorLinea);
-	}
-	
+		guardarFigura();
+	}	
+
+
 	public void dibujarFigura(int ancho, int alto) {
 		this.sistema.getFigura().setAncho(ancho);
 		this.sistema.getFigura().setAlto(alto);
@@ -65,12 +69,54 @@ public class Modelo {
 			this.sistema.calcularLadosFiguraCuadratica();
 		else if(tipoFigura == FIGURA_LAPIZ) {
 			this.vistaDibujo.moverLinea();
-		}		
-		this.vistaDibujo.setFigura(this.sistema.getFigura());
-		this.vistaDibujo.repaint(); 
-	
+		}
+		actualizarTablero();
 	}
 	
+	public void rehacerFigura() {
+		int indexFiguraRespaldo = this.sistema.getFigurasRespaldo().size()-1;		
+		
+		if (indexFiguraRespaldo >= 0) {
+			String tipoFiguraRespaldo = this.sistema.getFigurasRespaldo().get(indexFiguraRespaldo).getTipo();
+			this.sistema.getFiguras().add(this.sistema.getFigurasRespaldo().get(indexFiguraRespaldo));
+			this.sistema.getFigurasRespaldo().remove(indexFiguraRespaldo);
+			
+			if (tipoFiguraRespaldo.equals(FIGURA_LAPIZ)) {
+				int indexShape = this.sistema.getShapesRespaldo().size()-1;			
+				this.sistema.getShapes().add(this.sistema.getShapesRespaldo().get(indexShape));
+				this.sistema.getShapesRespaldo().remove(indexShape);
+			}
+			actualizarTablero();
+		}
+		
+	}
+
+
+	public void deshacerFigura() {
+		int indexFigura = this.sistema.getFiguras().size()-1;
+				
+		if (indexFigura >= 0) {
+			String tipoFigura = this.sistema.getFiguras().get(indexFigura).getTipo();
+			this.sistema.getFigurasRespaldo().add(this.sistema.getFiguras().get(indexFigura));
+			this.sistema.getFiguras().remove(indexFigura);
+			
+			if (tipoFigura.equals(FIGURA_LAPIZ)) {
+				int indexShape = this.sistema.getShapes().size()-1;			
+				this.sistema.getShapesRespaldo().add(this.sistema.getShapes().get(indexShape));
+				this.sistema.getShapes().remove(indexShape);
+			}
+			actualizarTablero();
+		}
+		
+	}
+	
+
+	private void actualizarTablero() {
+		this.vistaDibujo.setShapes(this.sistema.getShapes());
+		this.vistaDibujo.setFigura(this.sistema.getFiguras());
+		this.vistaDibujo.setFigura(this.sistema.getFigura());		
+		this.vistaDibujo.repaint();	
+	}
 	
 	
 	public void grosorBordeFigura(int grosorBorde) {
@@ -81,6 +127,22 @@ public class Modelo {
 		this.tipoFigura = tipoFigura;		
 	}
 	
+	private void gurdarDibujoLapiz() {
+		this.sistema.getShapes().add(this.vistaDibujo.getForma());
+		System.out.println("Tamaño: Shapes"+sistema.getShapes().size());		
+	}
+	
+	private void guardarFigura() {
+		this.sistema.getFiguras().add(sistema.getFigura());
+		System.out.println("Tamaño Figuras: "+sistema.getFiguras().size());
+		
+	}
+	
+	public void limpiarDibujo() {
+		this.sistema = new Sistema();
+		this.vistaDibujo.limpiar();	
+	}
+		
 	public void cambiarColor(String color) {
 		switch (color) {
 			case COLOR_NEGRO:
@@ -126,30 +188,14 @@ public class Modelo {
 
 	public VistaPrincipal getVistaPrincipal() {		
 		return vistaPrincipal;
-	}
-	
-	
+	}	
 
 	public Sistema getSistema() {
 		return sistema;
 	}
 
 
-	public void limpiarDibujo() {
-		this.vistaDibujo.limpiar();	
-	}
-
-
-	public void rehacerFigura() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public void deshacerFigura() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 	

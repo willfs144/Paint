@@ -6,14 +6,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Path2D;
 import java.awt.geom.Path2D.Float;
+import java.util.ArrayList;
 
 import Logica.Figura;
 
 public class VistaDibujo extends Canvas{
 	
 	private Figura figura;
+	private ArrayList<Figura> figuras;
+	private ArrayList<Shape> shapes;
 	private Path2D forma;
 	private Graphics2D draw;
 	
@@ -34,29 +38,45 @@ public class VistaDibujo extends Canvas{
 	public void paint(Graphics g ) {
 		
 		this.draw= (Graphics2D) g;
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
-		draw.setColor(figura.getColor());
+		draw.setColor(Color.WHITE);
+		draw.fillRect(0, 0, this.getWidth(), this.getHeight());		
 		
-		if (figura.getTipo() == modelo.FIGURA_LAPIZ && forma != null) {			
-				draw.draw(forma);				
+		if (!forma.equals(null)) {				
+			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+			draw.setColor(figura.getColor());
+			draw.draw(forma);					
 		}
 		
-		if (figura.getTipo() == modelo.FIGURA_LINEA) {			
-			draw.drawLine(figura.getPosicionX1(),figura.getPosicionY1(), figura.getAncho(), figura.getAlto());			
-		}
-		
-		if (figura.getTipo() == modelo.FIGURA_RECTANGULO) {
-			draw.draw(new Rectangle(figura.getPosicionX1(), figura.getPosicionY1(), figura.getAncho(), figura.getAlto()));
+		int index=0;
+		for (Figura figura: figuras) {
+			
+			if (figura.getTipo().equals(modelo.FIGURA_LAPIZ)) {				
+				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+				draw.setColor(figura.getColor());
+				draw.draw(shapes.get(index));
+				index++;
+			}
+			
+			if (figura.getTipo().equals(modelo.FIGURA_LINEA)) {	
+				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+				draw.setColor(figura.getColor());
+				draw.drawLine(figura.getPosicionX1(),figura.getPosicionY1(),figura.getAncho(), figura.getAlto());				
+			}
+			
+			if (figura.getTipo() == modelo.FIGURA_RECTANGULO) {
+				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+				draw.setColor(figura.getColor());
+				draw.draw(new Rectangle(figura.getPosicionX1(), figura.getPosicionY1(), 
+						figura.getAncho(), figura.getAlto()));
+			}
 		}
 		
 		if(this.evento == "Limpiar") {
 			draw.setPaint(Color.white);
 			draw.fillRect(0, 0, this.getWidth(), this.getHeight());
+			this.forma = new Path2D.Float();
 			this.evento = "";
-		}
-		
+		}		
 		
 	}
 
@@ -69,7 +89,10 @@ public class VistaDibujo extends Canvas{
 		this.forma.moveTo(figura.getPosicionX1(), figura.getPosicionY1());		
 	}
 	
-	
+	public void limpiar() {
+		this.evento = "Limpiar";
+		this.repaint();
+	}
 	
 	public ControladorDibujo getControl() {
 		return controlEventosDibujo;
@@ -79,16 +102,33 @@ public class VistaDibujo extends Canvas{
 		return modelo;
 	}
 	
+	public Path2D getForma() {
+		return forma;
+	}
 	
-	public void limpiar() {
-		this.evento = "Limpiar";
-		repaint();
+	
+	public void setForma(Path2D forma) {
+		this.forma = forma;
+	}
+
+	public void setShapes(ArrayList<Shape> shapes) {
+		this.shapes = shapes;
 	}
 
 	public void setFigura(Figura figura) {
 		this.figura = figura;
 		
 	}
+
+	public void setFigura(ArrayList<Figura> figuras) {
+		this.figuras = figuras;		
+	}
+	
+
+	
+	
+	
+	
 
 
 	

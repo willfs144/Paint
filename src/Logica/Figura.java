@@ -1,9 +1,9 @@
 package Logica;
 
 import java.awt.Color;
+import java.awt.Shape;
 
 public class Figura extends Elemento{
-	
 	
 	
 	private String tipo;
@@ -11,8 +11,12 @@ public class Figura extends Elemento{
 	private int grosorBorde;
 	private int ancho;
 	private int alto;
+		
 	
-			
+	public Figura() {
+		super(0,0);
+	}
+
 	public Figura(int x1, int y1, String tipo) {
 		super(x1, y1);
 		this.tipo = tipo;
@@ -52,6 +56,9 @@ public class Figura extends Elemento{
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
+	
+	
 	
 	
 		
