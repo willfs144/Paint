@@ -31,9 +31,10 @@ public class Modelo {
 	private int grosorLinea;
 
 	public void iniciar() {
+		
 		this.tipoFigura = FIGURA_LAPIZ;
 		this.color = Color.black;
-
+		//this.vistaPrincipal.setTitle(title);
 		this.vistaPrincipal = new VistaPrincipal(this);
 		this.vistaPrincipal.setSize(980, 700);
 		this.vistaPrincipal.setVisible(true);		
@@ -42,7 +43,20 @@ public class Modelo {
 		this.sistema.crearFigura(0, 0, FIGURA_LAPIZ);
 		this.vistaDibujo.setFigura(sistema.getFigura());
 		this.vistaDibujo.setFigura(sistema.getFiguras());
-	}	
+		
+	}
+	
+
+	public void cerrarPaint() {		
+	 this.vistaPrincipal.setVisible(false);	
+	 this.vistaPrincipal.dispose();		
+	}
+	
+	public void nuevaVentana() {
+		cerrarPaint();
+		iniciar();	
+	}
+
 	
 	public void colorear(String Evento) {
 		
@@ -194,6 +208,13 @@ public class Modelo {
 	public Sistema getSistema() {
 		return sistema;
 	}
+
+
+	
+
+
+
+	
 
 
 	
