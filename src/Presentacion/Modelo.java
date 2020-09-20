@@ -5,36 +5,46 @@ import Logica.Sistema;
 
 public class Modelo {
 	
-	public final static String COLOR_NEGRO = "negro";
-	public final static String COLOR_AZUL = "azul";	
-	public final static String COLOR_VERDE = "verde";
-	public final static String COLOR_ROJO = "rojo";
-	public final static String COLOR_MAGENTA = "magenta";
-	public final static String COLOR_GRIS = "gris";
-	public final static String COLOR_NARANJA = "naranja";
-	public final static String COLOR_AMARILLO = "amarillo";
-	public final static String COLOR_ROSADO = "rosado";
-	public final static String COLOR_CIAN = "cian";
-	public final static String COLOR_GRIS_CLARO = "gris claro";
+	public static final String COLOR_NEGRO = "negro";
+	public static final String COLOR_AZUL = "azul";	
+	public static final String COLOR_VERDE = "verde";
+	public static final String COLOR_ROJO = "rojo";
+	public static final String COLOR_MAGENTA = "magenta";
+	public static final String COLOR_GRIS = "gris";
+	public static final String COLOR_NARANJA = "naranja";
+	public static final String COLOR_AMARILLO = "amarillo";
+	public static final String COLOR_ROSADO = "rosado";
+	public static final String COLOR_CIAN = "cian";
+	public static final String COLOR_GRIS_CLARO = "gris claro";
+	public static final String COLORPICKER = "colorPicker";
 	
-	public final static String FIGURA_LINEA = "linea";
-	public final static String FIGURA_RECTANGULO = "rectangulo";
-	public final static String FIGURA_CIRCULO = "circulo";
-	public final static String FIGURA_LAPIZ = "lapiz";
+	public static final String ELEMENTO_TEXTO = "texto";
+	public static final String ELEMENTO_COLOR_PINTURA = "lleno";
+	public static final String ELEMENTO_COLOR_SIN_PINTURA = "libre";
+	
+	public static final String FIGURA_LINEA = "linea";
+	public static final String FIGURA_RECTANGULO = "rectangulo";
+	public static final String FIGURA_CIRCULO = "circulo";
+	public static final String FIGURA_LAPIZ = "lapiz";
+	
+	
+	
 			
 	private VistaDibujo vistaDibujo;
 	private VistaPrincipal vistaPrincipal;
 	private Sistema sistema;
 	
 	private String tipoFigura;
+	private String contextoFigura;
 	private Color color;
 	private int grosorLinea;
 
 	public void iniciar() {
 		
 		this.tipoFigura = FIGURA_LAPIZ;
-		this.color = Color.black;
-		//this.vistaPrincipal.setTitle(title);
+		this.contextoFigura = ELEMENTO_COLOR_SIN_PINTURA;
+		this.color = Color.black;		
+		
 		this.vistaPrincipal = new VistaPrincipal(this);
 		this.vistaPrincipal.setSize(980, 700);
 		this.vistaPrincipal.setVisible(true);		
@@ -42,38 +52,55 @@ public class Modelo {
 		this.sistema = new Sistema();
 		this.sistema.crearFigura(0, 0, FIGURA_LAPIZ);
 		this.vistaDibujo.setFigura(sistema.getFigura());
-		this.vistaDibujo.setFigura(sistema.getFiguras());
+		this.vistaDibujo.setFiguras(sistema.getFiguras());
 		
 	}
-	
 
 	public void cerrarPaint() {		
 	 this.vistaPrincipal.setVisible(false);	
 	 this.vistaPrincipal.dispose();		
 	}
 	
-	public void nuevaVentana() {
-		cerrarPaint();
-		iniciar();	
-	}
-
 	
-	public void colorear(String Evento) {
-		
+	public void agregarCualidadFigura(String elementoColor) {
+		if(this.tipoFigura == FIGURA_RECTANGULO || this.tipoFigura == FIGURA_CIRCULO) {
+			if (elementoColor.equals(ELEMENTO_COLOR_PINTURA)) {
+				this.vistaPrincipal.getVistaBotones().getBtnPicture().setVisible(false);
+				this.vistaPrincipal.getVistaBotones().getBtnSinPicture().setVisible(true);			
+			}
+			else if(elementoColor.equals(ELEMENTO_COLOR_SIN_PINTURA)) {
+				this.vistaPrincipal.getVistaBotones().getBtnSinPicture().setVisible(false);
+				this.vistaPrincipal.getVistaBotones().getBtnPicture().setVisible(true);			
+			}		
+			this.contextoFigura = elementoColor;
+		}
 	}
 	
+	public void agregarTextoFigura(String elementoTexto) {
+		String texto = this.vistaPrincipal.getVistaBotones().capturarTextoDialog();
+		if (texto != null) {
+			this.tipoFigura = elementoTexto;
+			this.contextoFigura = texto;
+		}			
+	}
 	
 	
 	public void crearFigura(int posicionX1, int posicionY1) {		
 		this.sistema.crearFigura(posicionX1, posicionY1, this.tipoFigura);
-			if(tipoFigura ==  FIGURA_LAPIZ ){
-				gurdarDibujoLapiz();				
+			if(tipoFigura ==  FIGURA_LAPIZ){				
+				gurdarDibujoLapiz();
 				actualizarTablero();
+				this.vistaDibujo.setForma(null);
 				this.vistaDibujo.iniciarDibujo();				
 			}
+			else if (tipoFigura == ELEMENTO_TEXTO) 
+				actualizarTablero();	
+			
 		this.sistema.getFigura().setColor(this.color);
 		this.sistema.getFigura().setGrosorBorde(this.grosorLinea);
+		this.sistema.getFigura().setContexto(this.contextoFigura);
 		guardarFigura();
+		
 	}	
 
 
@@ -128,9 +155,10 @@ public class Modelo {
 
 	private void actualizarTablero() {
 		this.vistaDibujo.setShapes(this.sistema.getShapes());
-		this.vistaDibujo.setFigura(this.sistema.getFiguras());
-		this.vistaDibujo.setFigura(this.sistema.getFigura());		
+		this.vistaDibujo.setFiguras(this.sistema.getFiguras());
+		this.vistaDibujo.setFigura(this.sistema.getFigura());
 		this.vistaDibujo.repaint();	
+		
 	}
 	
 	
@@ -149,8 +177,7 @@ public class Modelo {
 	
 	private void guardarFigura() {
 		this.sistema.getFiguras().add(sistema.getFigura());
-		System.out.println("Tamaño Figuras: "+sistema.getFiguras().size());
-		
+		System.out.println("Tamaño Figuras: "+sistema.getFiguras().size());		
 	}
 	
 	public void limpiarDibujo() {
@@ -199,6 +226,10 @@ public class Modelo {
 		}
 	}
 	
+	public void capturarPaletaColor() {
+		this.vistaPrincipal.getVistaBotones().getPaletaColores();
+		this.color = this.vistaPrincipal.getVistaBotones().getColor();		
+	}
 	//PRINCIPIO DE OCULTACION DE INFORMACION
 
 	public VistaPrincipal getVistaPrincipal() {		
@@ -208,6 +239,11 @@ public class Modelo {
 	public Sistema getSistema() {
 		return sistema;
 	}
+
+
+	
+
+	
 
 
 	

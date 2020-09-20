@@ -56,7 +56,7 @@ public class VistaPrincipal extends JFrame {
 			}
 		}
 		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout(5,5));
 		this.vistaDibujo = new VistaDibujo(this.modelo);
 		this.getContentPane().add(vistaDibujo, BorderLayout.CENTER);
 		this.vistaBotones = new VistaBotones(modelo);

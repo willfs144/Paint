@@ -61,17 +61,30 @@ public class VistaDibujo extends Canvas{
 				draw.drawLine(figura.getPosicionX1(),figura.getPosicionY1(),figura.getAncho(), figura.getAlto());				
 			}
 			
-			if (figura.getTipo() == modelo.FIGURA_RECTANGULO) {
+			if (figura.getTipo().equals(modelo.FIGURA_RECTANGULO)) {
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
-				draw.drawRect(figura.getPosicionX1(), figura.getPosicionY1(), 
+				if (figura.getContexto().equals(modelo.ELEMENTO_COLOR_PINTURA))
+					draw.fillRect(figura.getPosicionX1(), figura.getPosicionY1(), 
+							figura.getAncho(), figura.getAlto());
+				else
+					draw.drawRect(figura.getPosicionX1(), figura.getPosicionY1(), 
 							figura.getAncho(), figura.getAlto());
 			}
-			if (figura.getTipo() == modelo.FIGURA_CIRCULO) {
+			if (figura.getTipo().equals(modelo.FIGURA_CIRCULO)) {
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
-				draw.drawOval(figura.getPosicionX1(), figura.getPosicionY1(), 
-						figura.getAncho(), figura.getAlto());				
+				if (figura.getContexto().equals(modelo.ELEMENTO_COLOR_PINTURA))
+					draw.fillOval(figura.getPosicionX1(), figura.getPosicionY1(), 
+							figura.getAncho(), figura.getAlto());
+				else
+					draw.drawOval(figura.getPosicionX1(), figura.getPosicionY1(), 
+							figura.getAncho(), figura.getAlto());				
+			}
+			if (figura.getTipo().equals(modelo.ELEMENTO_TEXTO)) {
+				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+				draw.setColor(figura.getColor());
+				draw.drawString(figura.getContexto(), figura.getPosicionX1(), figura.getPosicionY1());	
 			}
 		}
 		
@@ -124,7 +137,7 @@ public class VistaDibujo extends Canvas{
 		
 	}
 
-	public void setFigura(ArrayList<Figura> figuras) {
+	public void setFiguras(ArrayList<Figura> figuras) {
 		this.figuras = figuras;		
 	}
 	

@@ -24,18 +24,26 @@ public class ControladorBotones implements ActionListener,ChangeListener{
 		
 		 if (event.getSource() == vistaBotones.getbtnLimpiar()) 
 			modelo.limpiarDibujo();
-		 else if (event.getSource() == vistaBotones.getBtnLapiz())
-			 modelo.tipoFigura(modelo.FIGURA_LAPIZ);
-		 else if (event.getSource() == vistaBotones.getBtnLinea())
-			 modelo.tipoFigura(modelo.FIGURA_LINEA);
-		 else if (event.getSource() == vistaBotones.getBtnRectangulo())
-			 modelo.tipoFigura(modelo.FIGURA_RECTANGULO);
-		 else if (event.getSource() == vistaBotones.getBtnOval())
-			 modelo.tipoFigura(modelo.FIGURA_CIRCULO);		 
-		 else if (event.getSource() == vistaBotones.getbtnRehacer()) //Falta implementacion
+		 else if (event.getSource() == vistaBotones.getColorPicker())
+			modelo.capturarPaletaColor();		
+		 else if (event.getSource() == vistaBotones.getbtnRehacer()) 
 			modelo.rehacerFigura();
-		 else if (event.getSource() == vistaBotones.getbtnDeshacer())  //Falta implementacion
+		 else if (event.getSource() == vistaBotones.getbtnDeshacer())
 			modelo.deshacerFigura();
+		 else if (event.getSource() == vistaBotones.getBtnLapiz())
+			modelo.tipoFigura(modelo.FIGURA_LAPIZ);
+		 else if (event.getSource() == vistaBotones.getBtnLinea())			
+			modelo.tipoFigura(modelo.FIGURA_LINEA);
+		 else if (event.getSource() == vistaBotones.getBtnRectangulo())
+			modelo.tipoFigura(modelo.FIGURA_RECTANGULO);
+		 else if (event.getSource() == vistaBotones.getBtnOval())
+			modelo.tipoFigura(modelo.FIGURA_CIRCULO);
+		 else if (event.getSource() == vistaBotones.getBtnPicture())
+			modelo.agregarCualidadFigura(modelo.ELEMENTO_COLOR_PINTURA);
+		 else if (event.getSource() == vistaBotones.getBtnSinPicture())
+				modelo.agregarCualidadFigura(modelo.ELEMENTO_COLOR_SIN_PINTURA);
+		 else if (event.getSource() == vistaBotones.getBtnFuente())
+				modelo.agregarTextoFigura(modelo.ELEMENTO_TEXTO);
 		 else if (event.getSource() == vistaBotones.getbtnNegro()) 
 			modelo.cambiarColor(modelo.COLOR_NEGRO);
 		 else if (event.getSource() == vistaBotones.getBlueButton()) 
@@ -57,15 +65,7 @@ public class ControladorBotones implements ActionListener,ChangeListener{
 		 else if (event.getSource() == vistaBotones.getCyanButton()) 
 			modelo.cambiarColor(modelo.COLOR_CIAN);
 		 else if (event.getSource() == vistaBotones.getLightGrayButton()) 
-			modelo.cambiarColor(modelo.COLOR_GRIS_CLARO);		 
-		 		
-	     /*else if (event.getSource() == colorPicker) {
-			color = JColorChooser.showDialog(null, "Pick your color!",
-					color);
-			if (color == null)
-				color = (Color.WHITE);
-			modelo.picker(color);
-		}*/
+			modelo.cambiarColor(modelo.COLOR_GRIS_CLARO);
 		
 	}
 

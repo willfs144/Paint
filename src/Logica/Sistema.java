@@ -14,6 +14,7 @@ public class Sistema {
 	private ArrayList<Shape> shapes;
 	private ArrayList<Figura> figurasRespaldo;
 	private ArrayList<Shape> shapesRespaldo;
+	
 
 	
 	public Sistema() {

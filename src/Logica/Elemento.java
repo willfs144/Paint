@@ -7,6 +7,7 @@ public class Elemento {
 
 	private int posicionX1;
 	private int posicionY1;
+	private String contexto;
 	
 	public Elemento(int posicionX1, int posicionY1) {
 		this.posicionX1 = posicionX1;
@@ -28,6 +29,24 @@ public class Elemento {
 	public void setPosicionY1(int posicionY1) {
 		this.posicionY1 = posicionY1;
 	}
+
+	public String getContexto() {
+		return contexto;
+	}
+
+	public void setContexto(String contexto) {
+		this.contexto = contexto;
+	}
+
+	
+
+	
+
+	
+	
+
+	
+	
 	
 	
 	
