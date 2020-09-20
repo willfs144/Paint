@@ -1,6 +1,8 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -29,7 +31,9 @@ public class VistaPrincipal extends JFrame {
 		this.vistaDibujo = new VistaDibujo(this.modelo);
 		this.getContentPane().add(vistaDibujo, BorderLayout.CENTER);
 		this.vistaBotones = new VistaBotones(modelo);
-		this.getContentPane().add(vistaBotones, BorderLayout.NORTH);		
+		this.getContentPane().add(vistaBotones, BorderLayout.NORTH);
+		this.vistaBotones.setLayout(new FlowLayout());
+		
 	}
 
 

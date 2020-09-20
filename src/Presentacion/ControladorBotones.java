@@ -30,6 +30,8 @@ public class ControladorBotones implements ActionListener,ChangeListener{
 			 modelo.tipoFigura(modelo.FIGURA_LINEA);
 		 else if (event.getSource() == vistaBotones.getBtnRectangulo())
 			 modelo.tipoFigura(modelo.FIGURA_RECTANGULO);
+		 else if (event.getSource() == vistaBotones.getBtnOval())
+			 modelo.tipoFigura(modelo.FIGURA_CIRCULO);		 
 		 else if (event.getSource() == vistaBotones.getbtnRehacer()) //Falta implementacion
 			modelo.rehacerFigura();
 		 else if (event.getSource() == vistaBotones.getbtnDeshacer())  //Falta implementacion

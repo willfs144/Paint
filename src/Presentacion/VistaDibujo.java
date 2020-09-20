@@ -5,10 +5,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Path2D;
-import java.awt.geom.Path2D.Float;
 import java.util.ArrayList;
 
 import Logica.Figura;
@@ -66,8 +64,14 @@ public class VistaDibujo extends Canvas{
 			if (figura.getTipo() == modelo.FIGURA_RECTANGULO) {
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
-				draw.draw(new Rectangle(figura.getPosicionX1(), figura.getPosicionY1(), 
-						figura.getAncho(), figura.getAlto()));
+				draw.drawRect(figura.getPosicionX1(), figura.getPosicionY1(), 
+							figura.getAncho(), figura.getAlto());
+			}
+			if (figura.getTipo() == modelo.FIGURA_CIRCULO) {
+				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
+				draw.setColor(figura.getColor());
+				draw.drawOval(figura.getPosicionX1(), figura.getPosicionY1(), 
+						figura.getAncho(), figura.getAlto());				
 			}
 		}
 		

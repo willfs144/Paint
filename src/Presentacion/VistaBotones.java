@@ -18,21 +18,22 @@ import javax.swing.event.AncestorListener;
 
 public class VistaBotones extends JPanel{
 	
+	private static final byte DIMENBTNICONO = 30;
+	private static final byte DIMENBTNCOLOR = 40;
+
+	
 	private JButton btnLimpiar, btnNegro, blueButton, greenButton, redButton,
 	colorPicker, magentaButton, grayButton, orangeButton, yellowButton,
-	pinkButton, cyanButton, lightGrayButton, btnDeshacer, btnRehacer;
+	pinkButton, cyanButton, lightGrayButton, btnDeshacer, btnRehacer, 
+	btnLapiz,  btnLinea, btnOval, btnRectangulo, btnBorrador;
 	
 	private Icon iconDeshacer = new ImageIcon(getClass().getResource("img/undo.png"));
 	private Icon iconRehacer = new ImageIcon(getClass().getResource("img/redo.png"));
 	private Icon iconlapiz = new ImageIcon(getClass().getResource("img/pencil.png"));
 	private Icon iconRectangulo = new ImageIcon(getClass().getResource("img/rect.png"));
 	private Icon iconLinea = new ImageIcon(getClass().getResource("img/line.png"));
-	
-	private JButton btnLinea;
-	private JButton btnLapiz;
-	private JButton btnBorrador;
-	private JButton btnRectangulo;
-	
+	private Icon iconOvalo = new ImageIcon(getClass().getResource("img/oval.png"));
+		
 	private JSlider jSliGrosor;
 	private JLabel  jLabGrosor;
 	
@@ -46,93 +47,98 @@ public class VistaBotones extends JPanel{
 		this.setBorder(BorderFactory.createTitledBorder("Control Paint"));
 		
 		btnLapiz = new JButton(iconlapiz);
-		btnLapiz.setPreferredSize(new Dimension(30, 30));
+		btnLapiz.setPreferredSize(new Dimension(DIMENBTNICONO, DIMENBTNICONO));
 		this.add(btnLapiz);
 		btnLapiz.addActionListener(controlEventosBotones);
 		
 		btnLinea = new JButton(iconLinea);
-		btnLinea.setPreferredSize(new Dimension(30, 30));
+		btnLinea.setPreferredSize(new Dimension(DIMENBTNICONO, DIMENBTNICONO));
 		this.add(btnLinea);
 		btnLinea.addActionListener(controlEventosBotones);
 		
 		btnRectangulo = new JButton(iconRectangulo);
-		btnRectangulo.setPreferredSize(new Dimension(30, 30));
+		btnRectangulo.setPreferredSize(new Dimension(DIMENBTNICONO, DIMENBTNICONO));
 		this.add(btnRectangulo);
 		btnRectangulo.addActionListener(controlEventosBotones);		
 		
+		btnOval = new JButton(iconOvalo);
+		btnOval.setPreferredSize(new Dimension(DIMENBTNICONO, DIMENBTNICONO));
+		this.add(btnOval);
+		btnOval.addActionListener(controlEventosBotones);		
+		
 		btnDeshacer = new JButton(iconDeshacer);
-		btnDeshacer.setPreferredSize(new Dimension(30, 30));
+		btnDeshacer.setPreferredSize(new Dimension(DIMENBTNICONO, DIMENBTNICONO));
 		this.add(btnDeshacer);
 		btnDeshacer.addActionListener(controlEventosBotones);
 		
 		btnRehacer = new JButton(iconRehacer);
-		btnRehacer.setPreferredSize(new Dimension(30, 30));
+		btnRehacer.setPreferredSize(new Dimension(DIMENBTNICONO, DIMENBTNICONO));
 		this.add(btnRehacer);
 		btnRehacer.addActionListener(controlEventosBotones);
 		
 		btnNegro = new JButton();
 		btnNegro.setName("Negro");
 		btnNegro.setBackground(Color.BLACK);
-		btnNegro.setPreferredSize(new Dimension(40, 40));
+		btnNegro.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(btnNegro);
 		btnNegro.addActionListener(controlEventosBotones);
 		
 		blueButton = new JButton();
 		blueButton.setBackground(Color.BLUE);
-		blueButton.setPreferredSize(new Dimension(40, 40));
+		blueButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(blueButton);
 		blueButton.addActionListener(controlEventosBotones);
 		
 		greenButton = new JButton();
 		greenButton.setBackground(Color.GREEN);
-		greenButton.setPreferredSize(new Dimension(40, 40));
+		greenButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(greenButton);
 		greenButton.addActionListener(controlEventosBotones);
 		
 		redButton = new JButton();
 		redButton.setBackground(Color.RED);
-		redButton.setPreferredSize(new Dimension(40, 40));
+		redButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(redButton);
 		redButton.addActionListener(controlEventosBotones);
 		
 		magentaButton = new JButton();
 		magentaButton.setBackground(Color.MAGENTA);
-		magentaButton.setPreferredSize(new Dimension(40, 40));
+		magentaButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(magentaButton);
 		
 		grayButton = new JButton();
 		grayButton.setBackground(Color.GRAY);
-		grayButton.setPreferredSize(new Dimension(40, 40));
+		grayButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(grayButton);
 		grayButton.addActionListener(controlEventosBotones);
 		
 		orangeButton = new JButton();
 		orangeButton.setBackground(Color.ORANGE);
-		orangeButton.setPreferredSize(new Dimension(40, 40));
+		orangeButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(orangeButton);
 		orangeButton.addActionListener(controlEventosBotones);
 		
 		yellowButton = new JButton();
 		yellowButton.setBackground(Color.YELLOW);
-		yellowButton.setPreferredSize(new Dimension(40, 40));
+		yellowButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(yellowButton);
 		yellowButton.addActionListener(controlEventosBotones);
 		
 		pinkButton = new JButton();
 		pinkButton.setBackground(Color.PINK);
-		pinkButton.setPreferredSize(new Dimension(40, 40));
+		pinkButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(pinkButton);
 		pinkButton.addActionListener(controlEventosBotones);
 		
 		cyanButton = new JButton();
 		cyanButton.setBackground(Color.CYAN);
-		cyanButton.setPreferredSize(new Dimension(40, 40));
+		cyanButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(cyanButton);
 		cyanButton.addActionListener(controlEventosBotones);
 		
 		lightGrayButton = new JButton();
 		lightGrayButton.setBackground(Color.LIGHT_GRAY);
-		lightGrayButton.setPreferredSize(new Dimension(40, 40));
+		lightGrayButton.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(lightGrayButton);
 		lightGrayButton.addActionListener(controlEventosBotones);
 		
@@ -147,13 +153,13 @@ public class VistaBotones extends JPanel{
 		jSliGrosor = new JSlider(JSlider.HORIZONTAL, 0, 50, 1);
 		jSliGrosor.setMajorTickSpacing(25);
 		jSliGrosor.setPaintTicks(true);
-		jSliGrosor.setPreferredSize(new Dimension(40, 40));
+		jSliGrosor.setPreferredSize(new Dimension(DIMENBTNCOLOR, DIMENBTNCOLOR));
 		this.add(jSliGrosor);
 		jSliGrosor.addChangeListener(controlEventosBotones);
 		
 		jLabGrosor = new JLabel("1");
 		this.add(jLabGrosor);
-
+		
 	}	
 
 	public Modelo getModelo() {
@@ -249,6 +255,10 @@ public class VistaBotones extends JPanel{
 
 	public JButton getBtnRectangulo() {
 		return btnRectangulo;
+	}
+
+	public JButton getBtnOval() {
+		return btnOval;
 	}
 
 	public JSlider getjSliGrosor() {

@@ -19,6 +19,7 @@ public class Modelo {
 	
 	public final static String FIGURA_LINEA = "linea";
 	public final static String FIGURA_RECTANGULO = "rectangulo";
+	public final static String FIGURA_CIRCULO = "circulo";
 	public final static String FIGURA_LAPIZ = "lapiz";
 			
 	private VistaDibujo vistaDibujo;
@@ -65,7 +66,7 @@ public class Modelo {
 	public void dibujarFigura(int ancho, int alto) {
 		this.sistema.getFigura().setAncho(ancho);
 		this.sistema.getFigura().setAlto(alto);
-		if(tipoFigura == FIGURA_RECTANGULO )
+		if(tipoFigura == FIGURA_RECTANGULO || tipoFigura == FIGURA_CIRCULO )
 			this.sistema.calcularLadosFiguraCuadratica();
 		else if(tipoFigura == FIGURA_LAPIZ) {
 			this.vistaDibujo.moverLinea();
