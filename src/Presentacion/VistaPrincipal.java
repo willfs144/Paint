@@ -2,13 +2,9 @@ package Presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.MenuBar;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -17,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JSeparator;
 import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
