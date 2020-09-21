@@ -5,9 +5,15 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.Path2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import Logica.Figura;
 
@@ -18,6 +24,7 @@ public class VistaDibujo extends Canvas{
 	private ArrayList<Shape> shapes;
 	private Path2D forma;
 	private Graphics2D draw;
+	private Image imagenPaint;
 	
 	private String evento;
 	
@@ -37,7 +44,9 @@ public class VistaDibujo extends Canvas{
 		
 		this.draw= (Graphics2D) g;
 		draw.setColor(Color.WHITE);
-		draw.fillRect(0, 0, this.getWidth(), this.getHeight());		
+		draw.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
+		g.drawImage(this.imagenPaint, 0 , 0, null);
 		
 		if (figura.getTipo().equals(modelo.FIGURA_LAPIZ)) {				
 			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
@@ -96,7 +105,8 @@ public class VistaDibujo extends Canvas{
 		}		
 		
 	}
-
+	
+	
 	public void moverLinea() {
 		this.forma.lineTo(figura.getAncho(), figura.getAlto());
 	}
@@ -111,6 +121,18 @@ public class VistaDibujo extends Canvas{
 		this.repaint();
 	}
 	
+	public Image getImagenPaint() {			
+		BufferedImage imagen = new BufferedImage(this.getWidth(),this.getHeight(),
+				BufferedImage.TYPE_INT_RGB);		
+		Graphics2D g2 = imagen.createGraphics(); 
+		paint(g2);
+		return imagen;
+	}
+	
+	public void setImagenPaint(Image imagenPaint) {
+		this.imagenPaint = imagenPaint;
+	}
+
 	public ControladorDibujo getControl() {
 		return controlEventosDibujo;
 	}

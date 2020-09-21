@@ -1,6 +1,13 @@
 package Presentacion;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import Logica.Sistema;
 
 public class Modelo {
@@ -26,12 +33,11 @@ public class Modelo {
 	public static final String FIGURA_RECTANGULO = "rectangulo";
 	public static final String FIGURA_CIRCULO = "circulo";
 	public static final String FIGURA_LAPIZ = "lapiz";
-	
-	
-	
 			
 	private VistaDibujo vistaDibujo;
+	private VistaBotones vistaBotones;
 	private VistaPrincipal vistaPrincipal;
+	
 	private Sistema sistema;
 	
 	private String tipoFigura;
@@ -49,6 +55,7 @@ public class Modelo {
 		this.vistaPrincipal.setSize(980, 700);
 		this.vistaPrincipal.setVisible(true);		
 		this.vistaDibujo = vistaPrincipal.getVistaDibujo();
+		this.vistaBotones = vistaPrincipal.getVistaBotones();
 		this.sistema = new Sistema();
 		this.sistema.crearFigura(0, 0, FIGURA_LAPIZ);
 		this.vistaDibujo.setFigura(sistema.getFigura());
@@ -56,28 +63,36 @@ public class Modelo {
 		
 	}
 
-	public void cerrarPaint() {		
-	 this.vistaPrincipal.setVisible(false);	
-	 this.vistaPrincipal.dispose();		
+	
+	
+	public void abrir() {
+		this.vistaPrincipal.showDialogAbrir();
+		this.vistaDibujo.setImagenPaint(this.vistaPrincipal.getImagen());
+		this.vistaDibujo.repaint();
+	}
+
+	public void guardar() {
+		this.vistaPrincipal.setImagen(this.vistaDibujo.getImagenPaint());
+		this.vistaPrincipal.showDialogGuardar();		
 	}
 	
 	
 	public void agregarCualidadFigura(String elementoColor) {
 		if(this.tipoFigura == FIGURA_RECTANGULO || this.tipoFigura == FIGURA_CIRCULO) {
 			if (elementoColor.equals(ELEMENTO_COLOR_PINTURA)) {
-				this.vistaPrincipal.getVistaBotones().getBtnPicture().setVisible(false);
-				this.vistaPrincipal.getVistaBotones().getBtnSinPicture().setVisible(true);			
+				this.vistaBotones.getBtnPicture().setVisible(false);
+				this.vistaBotones.getBtnSinPicture().setVisible(true);			
 			}
 			else if(elementoColor.equals(ELEMENTO_COLOR_SIN_PINTURA)) {
-				this.vistaPrincipal.getVistaBotones().getBtnSinPicture().setVisible(false);
-				this.vistaPrincipal.getVistaBotones().getBtnPicture().setVisible(true);			
+				this.vistaBotones.getBtnSinPicture().setVisible(false);
+				this.vistaBotones.getBtnPicture().setVisible(true);			
 			}		
 			this.contextoFigura = elementoColor;
 		}
 	}
 	
 	public void agregarTextoFigura(String elementoTexto) {
-		String texto = this.vistaPrincipal.getVistaBotones().capturarTextoDialog();
+		String texto = this.vistaBotones.capturarTextoDialog();
 		if (texto != null) {
 			this.tipoFigura = elementoTexto;
 			this.contextoFigura = texto;
@@ -85,8 +100,7 @@ public class Modelo {
 		if (texto == "") {
 			this.tipoFigura = "";
 		}
-	}
-	
+	}	
 	
 	public void crearFigura(int posicionX1, int posicionY1) {		
 		this.sistema.crearFigura(posicionX1, posicionY1, this.tipoFigura);
@@ -103,8 +117,7 @@ public class Modelo {
 		
 		if(tipoFigura !=  FIGURA_LAPIZ)
 			guardarFigura();		
-	}	
-
+	}
 
 	public void dibujarFigura(int ancho, int alto) {
 		this.sistema.getFigura().setAncho(ancho);
@@ -135,7 +148,6 @@ public class Modelo {
 		
 	}
 
-
 	public void deshacerFigura() {
 		int indexFigura = this.sistema.getFiguras().size()-1;
 				
@@ -152,8 +164,7 @@ public class Modelo {
 			actualizarTablero();
 		}
 		
-	}
-	
+	}	
 
 	private void actualizarTablero() {		
 		this.vistaDibujo.setFiguras(this.sistema.getFiguras());
@@ -161,8 +172,7 @@ public class Modelo {
 		this.vistaDibujo.setShapes(this.sistema.getShapes());
 		this.vistaDibujo.repaint();	
 		
-	}
-	
+	}	
 	
 	public void grosorBordeFigura(int grosorBorde) {
 		this.grosorLinea = grosorBorde;
@@ -232,8 +242,8 @@ public class Modelo {
 	}
 	
 	public void capturarPaletaColor() {
-		this.vistaPrincipal.getVistaBotones().getPaletaColores();
-		this.color = this.vistaPrincipal.getVistaBotones().getColor();		
+		this.vistaBotones.getPaletaColores();
+		this.color = this.vistaBotones.getColor();		
 	}
 	//PRINCIPIO DE OCULTACION DE INFORMACION
 
@@ -244,6 +254,8 @@ public class Modelo {
 	public Sistema getSistema() {
 		return sistema;
 	}
+
+	
 
 
 	
