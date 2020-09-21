@@ -39,7 +39,7 @@ public class VistaDibujo extends Canvas{
 		draw.setColor(Color.WHITE);
 		draw.fillRect(0, 0, this.getWidth(), this.getHeight());		
 		
-		if (this.forma.getBounds() != null) {				
+		if (figura.getTipo().equals(modelo.FIGURA_LAPIZ)) {				
 			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 			draw.setColor(figura.getColor());
 			draw.draw(forma);					

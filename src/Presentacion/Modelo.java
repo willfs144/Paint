@@ -81,7 +81,10 @@ public class Modelo {
 		if (texto != null) {
 			this.tipoFigura = elementoTexto;
 			this.contextoFigura = texto;
-		}			
+		}
+		if (texto == "") {
+			this.tipoFigura = "";
+		}
 	}
 	
 	
@@ -90,21 +93,16 @@ public class Modelo {
 		this.sistema.getFigura().setColor(this.color);
 		this.sistema.getFigura().setGrosorBorde(this.grosorLinea);
 		this.sistema.getFigura().setContexto(this.contextoFigura);
-			if(tipoFigura ==  FIGURA_LAPIZ){
-				guardarFigura();
-				gurdarDibujoLapiz();
-				this.vistaDibujo.setForma(null);
-				actualizarTablero();				
-				this.vistaDibujo.iniciarDibujo();				
-			}
-			else if (tipoFigura == ELEMENTO_TEXTO) 
-				actualizarTablero();
-			if (tipoFigura ==  FIGURA_LAPIZ) {
-				
-			}
-			else
-				guardarFigura();
 		
+		if(tipoFigura ==  FIGURA_LAPIZ){		
+			actualizarTablero();			
+			this.vistaDibujo.iniciarDibujo();			
+		}
+		else if (tipoFigura == ELEMENTO_TEXTO) 
+			actualizarTablero();		
+		
+		if(tipoFigura !=  FIGURA_LAPIZ)
+			guardarFigura();		
 	}	
 
 
@@ -174,12 +172,15 @@ public class Modelo {
 		this.tipoFigura = tipoFigura;		
 	}
 	
-	private void gurdarDibujoLapiz() {
-		this.sistema.getShapes().add(this.vistaDibujo.getForma());
-		System.out.println("Tamaño: Shapes"+sistema.getShapes().size());		
+	public void guardarDibujoLapiz() {
+		if(tipoFigura ==  FIGURA_LAPIZ) {
+			guardarFigura();
+			this.sistema.getShapes().add(this.vistaDibujo.getForma());
+			System.out.println("Tamaño: Shapes"+sistema.getShapes().size());
+		}
 	}
 	
-	private void guardarFigura() {
+	public void guardarFigura() {
 		this.sistema.getFiguras().add(sistema.getFigura());
 		System.out.println("Tamaño Figuras: "+sistema.getFiguras().size());		
 	}

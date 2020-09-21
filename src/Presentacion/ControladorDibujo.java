@@ -59,9 +59,8 @@ public class ControladorDibujo extends JPanel implements MouseListener, MouseMot
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-	
-		
+	public void mouseReleased(MouseEvent e) {	
+		modelo.guardarDibujoLapiz();
 	}
 
 	
