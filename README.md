@@ -1,6 +1,6 @@
 # Paint MVC
 
-El estilo de arquitectura de software, Modelo Vista Controlador (MVC), es un patrón de diseño de interfaces gráficas enfocado a usuario que separa la aplicación en tres diferentes responsabilidades que son:
+El estilo de arquitectura de software Modelo Vista Controlador (MVC), es un patrón de diseño de interfaces gráficas enfocado a usuario que separa la aplicación en tres diferentes responsabilidades que son:
 
   <b>*Modelo:</b> representa la lógica del negocio, el estado de la aplicación, contiene los objetos de dominio o estructuras de datos relacionados.  
 
