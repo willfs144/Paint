@@ -11,4 +11,4 @@ El estilo de arquitectura de software, Modelo Vista Controlador (MVC), es un pat
 
 Con el fin de representar el patrón MVC, se utiliza como caso de estudio el editor de imágenes de nombre PAINT, aplicación que se describe a continuación.
 
-align="center"> ![alt text](https://raw.githubusercontent.com/willfs144/Paint/master/MVC2%20.png)
+![alt text](https://raw.githubusercontent.com/willfs144/Paint/master/MVC2%20.png)
