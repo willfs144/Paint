@@ -33,8 +33,7 @@ public class VistaPrincipal extends JFrame {
 	private VistaBotones vistaBotones;
 	
 	private Modelo modelo;
-	private ControladorPrincipal controladorPrincipal;
-	
+	private ControladorPrincipal controladorPrincipal;	
 	
 	
 	public VistaPrincipal(Modelo modelo) {

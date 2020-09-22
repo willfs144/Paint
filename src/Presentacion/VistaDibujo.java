@@ -98,6 +98,7 @@ public class VistaDibujo extends Canvas{
 			draw.fillRect(0, 0, this.getWidth(), this.getHeight());
 			this.forma = new Path2D.Float();
 			this.evento = "";
+			this.imagenPaint = null;
 		}		
 		
 	}
