@@ -4,6 +4,9 @@ import java.awt.Color;
 
 public class Elemento {
 	
+	public static final String TEXTO = "texto";
+	public static final String COLOR_PINTURA = "lleno";
+	public static final String COLOR_SIN_PINTURA = "libre";
 
 	private int posicionX1;
 	private int posicionY1;

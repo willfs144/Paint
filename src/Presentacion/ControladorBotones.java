@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Logica.Figura;
+
 public class ControladorBotones implements ActionListener,ChangeListener{
 
 	private VistaBotones vistaBotones;
@@ -28,41 +30,41 @@ public class ControladorBotones implements ActionListener,ChangeListener{
 		 else if (event.getSource() == vistaBotones.getbtnDeshacer())
 			modelo.deshacerFigura();
 		 else if (event.getSource() == vistaBotones.getBtnLapiz())
-			modelo.tipoFigura(modelo.FIGURA_LAPIZ);
+			modelo.tipoFigura(Figura.LAPIZ);
 		 else if (event.getSource() == vistaBotones.getBtnLinea())			
-			modelo.tipoFigura(modelo.FIGURA_LINEA);
+			modelo.tipoFigura(Figura.LINEA);
 		 else if (event.getSource() == vistaBotones.getBtnRectangulo())
-			modelo.tipoFigura(modelo.FIGURA_RECTANGULO);
+			modelo.tipoFigura(Figura.RECTANGULO);
 		 else if (event.getSource() == vistaBotones.getBtnOval())
-			modelo.tipoFigura(modelo.FIGURA_CIRCULO);
+			modelo.tipoFigura(Figura.CIRCULO);
 		 else if (event.getSource() == vistaBotones.getBtnPicture())
-			modelo.agregarCualidadFigura(modelo.ELEMENTO_COLOR_PINTURA);
+			modelo.agregarCualidadFigura(Figura.COLOR_PINTURA);
 		 else if (event.getSource() == vistaBotones.getBtnSinPicture())
-				modelo.agregarCualidadFigura(modelo.ELEMENTO_COLOR_SIN_PINTURA);
+				modelo.agregarCualidadFigura(Figura.COLOR_SIN_PINTURA);
 		 else if (event.getSource() == vistaBotones.getBtnFuente())
-				modelo.agregarTextoFigura(modelo.ELEMENTO_TEXTO);
+				modelo.agregarTextoFigura(Figura.TEXTO);
 		 else if (event.getSource() == vistaBotones.getbtnNegro()) 
-			modelo.cambiarColor(modelo.COLOR_NEGRO);
+			modelo.cambiarColor(Figura.COLOR_NEGRO);
 		 else if (event.getSource() == vistaBotones.getBlueButton()) 
-			modelo.cambiarColor(modelo.COLOR_AZUL);
+			modelo.cambiarColor(Figura.COLOR_AZUL);
 		 else if (event.getSource() == vistaBotones.getGreenButton()) 
-			modelo.cambiarColor(modelo.COLOR_VERDE);
+			modelo.cambiarColor(Figura.COLOR_VERDE);
 		 else if (event.getSource() == vistaBotones.getRedButton()) 
-			modelo.cambiarColor(modelo.COLOR_ROJO);
+			modelo.cambiarColor(Figura.COLOR_ROJO);
 		 else if (event.getSource() == vistaBotones.getMagentaButton()) 
-			modelo.cambiarColor(modelo.COLOR_MAGENTA);
+			modelo.cambiarColor(Figura.COLOR_MAGENTA);
 		 else if (event.getSource() == vistaBotones.getGrayButton()) 
-			modelo.cambiarColor(modelo.COLOR_GRIS);
+			modelo.cambiarColor(Figura.COLOR_GRIS);
 		 else if (event.getSource() == vistaBotones.getOrangeButton())
-			modelo.cambiarColor(modelo.COLOR_NARANJA);
+			modelo.cambiarColor(Figura.COLOR_NARANJA);
 		 else if (event.getSource() == vistaBotones.getYellowButton()) 
-			modelo.cambiarColor(modelo.COLOR_AMARILLO);
+			modelo.cambiarColor(Figura.COLOR_AMARILLO);
 		 else if (event.getSource() == vistaBotones.getPinkButton()) 
-			modelo.cambiarColor(modelo.COLOR_ROSADO);
+			modelo.cambiarColor(Figura.COLOR_ROSADO);
 		 else if (event.getSource() == vistaBotones.getCyanButton()) 
-			modelo.cambiarColor(modelo.COLOR_CIAN);
+			modelo.cambiarColor(Figura.COLOR_CIAN);
 		 else if (event.getSource() == vistaBotones.getLightGrayButton()) 
-			modelo.cambiarColor(modelo.COLOR_GRIS_CLARO);
+			modelo.cambiarColor(Figura.COLOR_GRIS_CLARO);
 		
 	}
 

@@ -13,8 +13,6 @@ public class Sistema {
 	private ArrayList<Figura> figurasRespaldo;
 	private ArrayList<Shape> shapesRespaldo;
 	
-
-	
 	public Sistema() {
 		this.figura = new Figura();
 		this.figuras = new ArrayList<Figura>();

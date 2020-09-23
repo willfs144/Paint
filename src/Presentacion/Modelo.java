@@ -2,32 +2,11 @@ package Presentacion;
 
 import java.awt.Color;
 
+import Logica.Figura;
 import Logica.Sistema;
 
 public class Modelo {
-	
-	public static final String COLOR_NEGRO = "negro";
-	public static final String COLOR_AZUL = "azul";	
-	public static final String COLOR_VERDE = "verde";
-	public static final String COLOR_ROJO = "rojo";
-	public static final String COLOR_MAGENTA = "magenta";
-	public static final String COLOR_GRIS = "gris";
-	public static final String COLOR_NARANJA = "naranja";
-	public static final String COLOR_AMARILLO = "amarillo";
-	public static final String COLOR_ROSADO = "rosado";
-	public static final String COLOR_CIAN = "cian";
-	public static final String COLOR_GRIS_CLARO = "gris claro";
-	public static final String COLORPICKER = "colorPicker";
-	
-	public static final String ELEMENTO_TEXTO = "texto";
-	public static final String ELEMENTO_COLOR_PINTURA = "lleno";
-	public static final String ELEMENTO_COLOR_SIN_PINTURA = "libre";
-	
-	public static final String FIGURA_LINEA = "linea";
-	public static final String FIGURA_RECTANGULO = "rectangulo";
-	public static final String FIGURA_CIRCULO = "circulo";
-	public static final String FIGURA_LAPIZ = "lapiz";
-			
+					
 	private VistaDibujo vistaDibujo;
 	private VistaBotones vistaBotones;
 	private VistaPrincipal vistaPrincipal;
@@ -41,8 +20,8 @@ public class Modelo {
 
 	public void iniciar() {
 		
-		this.tipoFigura = FIGURA_LAPIZ;
-		this.contextoFigura = ELEMENTO_COLOR_SIN_PINTURA;
+		this.tipoFigura = Figura.LAPIZ;
+		this.contextoFigura = Figura.COLOR_SIN_PINTURA;
 		this.color = Color.black;		
 		
 		this.vistaPrincipal = new VistaPrincipal(this);
@@ -51,7 +30,7 @@ public class Modelo {
 		this.vistaDibujo = vistaPrincipal.getVistaDibujo();
 		this.vistaBotones = vistaPrincipal.getVistaBotones();
 		this.sistema = new Sistema();
-		this.sistema.crearFigura(0, 0, FIGURA_LAPIZ);
+		this.sistema.crearFigura(0, 0, Figura.LAPIZ);
 		this.vistaDibujo.setFigura(sistema.getFigura());
 		this.vistaDibujo.setFiguras(sistema.getFiguras());
 		
@@ -72,12 +51,12 @@ public class Modelo {
 	
 	
 	public void agregarCualidadFigura(String elementoColor) {
-		if(this.tipoFigura == FIGURA_RECTANGULO || this.tipoFigura == FIGURA_CIRCULO) {
-			if (elementoColor.equals(ELEMENTO_COLOR_PINTURA)) {
+		if(this.tipoFigura == Figura.RECTANGULO || this.tipoFigura == Figura.CIRCULO) {
+			if (elementoColor.equals(Figura.COLOR_PINTURA)) {
 				this.vistaBotones.getBtnPicture().setVisible(false);
 				this.vistaBotones.getBtnSinPicture().setVisible(true);			
 			}
-			else if(elementoColor.equals(ELEMENTO_COLOR_SIN_PINTURA)) {
+			else if(elementoColor.equals(Figura.COLOR_SIN_PINTURA)) {
 				this.vistaBotones.getBtnSinPicture().setVisible(false);
 				this.vistaBotones.getBtnPicture().setVisible(true);			
 			}		
@@ -102,23 +81,23 @@ public class Modelo {
 		this.sistema.getFigura().setGrosorBorde(this.grosorLinea);
 		this.sistema.getFigura().setContexto(this.contextoFigura);
 		
-		if(tipoFigura ==  FIGURA_LAPIZ){		
+		if(tipoFigura ==  Figura.LAPIZ){		
 			actualizarTablero();			
 			this.vistaDibujo.iniciarDibujo();			
 		}
-		else if (tipoFigura == ELEMENTO_TEXTO) 
+		else if (tipoFigura == Figura.TEXTO) 
 			actualizarTablero();		
 		
-		if(tipoFigura !=  FIGURA_LAPIZ)
+		if(tipoFigura !=  Figura.LAPIZ)
 			guardarFigura();		
 	}
 
 	public void dibujarFigura(int ancho, int alto) {
 		this.sistema.getFigura().setAncho(ancho);
 		this.sistema.getFigura().setAlto(alto);
-		if(tipoFigura == FIGURA_RECTANGULO || tipoFigura == FIGURA_CIRCULO )
+		if(tipoFigura == Figura.RECTANGULO || tipoFigura == Figura.CIRCULO )
 			this.sistema.calcularLadosFiguraCuadratica();
-		else if(tipoFigura == FIGURA_LAPIZ) {
+		else if(tipoFigura == Figura.LAPIZ) {
 			this.vistaDibujo.moverLinea();
 		}
 		actualizarTablero();
@@ -132,7 +111,7 @@ public class Modelo {
 			this.sistema.getFiguras().add(this.sistema.getFigurasRespaldo().get(indexFiguraRespaldo));
 			this.sistema.getFigurasRespaldo().remove(indexFiguraRespaldo);
 			
-			if (tipoFiguraRespaldo.equals(FIGURA_LAPIZ)) {
+			if (tipoFiguraRespaldo.equals(Figura.LAPIZ)) {
 				int indexShape = this.sistema.getShapesRespaldo().size()-1;			
 				this.sistema.getShapes().add(this.sistema.getShapesRespaldo().get(indexShape));
 				this.sistema.getShapesRespaldo().remove(indexShape);
@@ -150,7 +129,7 @@ public class Modelo {
 			this.sistema.getFigurasRespaldo().add(this.sistema.getFiguras().get(indexFigura));
 			this.sistema.getFiguras().remove(indexFigura);
 			
-			if (tipoFigura.equals(FIGURA_LAPIZ)) {
+			if (tipoFigura.equals(Figura.LAPIZ)) {
 				int indexShape = this.sistema.getShapes().size()-1;			
 				this.sistema.getShapesRespaldo().add(this.sistema.getShapes().get(indexShape));
 				this.sistema.getShapes().remove(indexShape);
@@ -177,7 +156,7 @@ public class Modelo {
 	}
 	
 	public void guardarDibujoLapiz() {
-		if(tipoFigura ==  FIGURA_LAPIZ) {
+		if(tipoFigura ==  Figura.LAPIZ) {
 			guardarFigura();
 			this.sistema.getShapes().add(this.vistaDibujo.getForma());
 			System.out.println("Tamaño: Shapes"+sistema.getShapes().size());
@@ -196,37 +175,37 @@ public class Modelo {
 		
 	public void cambiarColor(String color) {
 		switch (color) {
-			case COLOR_NEGRO:
+			case Figura.COLOR_NEGRO:
 				this.color = Color.BLACK;
 				break;
-			case COLOR_AZUL:
+			case Figura.COLOR_AZUL:
 				this.color = Color.BLUE;
 				break;
-			case COLOR_VERDE:
+			case Figura.COLOR_VERDE:
 				this.color = Color.GREEN;
 				break;
-			case COLOR_ROJO:
+			case Figura.COLOR_ROJO:
 				this.color = Color.RED;
 				break;
-			case COLOR_MAGENTA:
+			case Figura.COLOR_MAGENTA:
 				this.color = Color.MAGENTA;
 				break;
-			case COLOR_GRIS:
+			case Figura.COLOR_GRIS:
 				this.color = Color.GRAY;
 				break;
-			case COLOR_NARANJA:
+			case Figura.COLOR_NARANJA:
 				this.color = Color.ORANGE;
 				break;
-			case COLOR_AMARILLO:
+			case Figura.COLOR_AMARILLO:
 				this.color = Color.YELLOW;
 				break;
-			case COLOR_ROSADO:
+			case Figura.COLOR_ROSADO:
 				this.color = Color.PINK;
 				break;
-			case COLOR_CIAN:
+			case Figura.COLOR_CIAN:
 				this.color = Color.CYAN;
 				break;
-			case COLOR_GRIS_CLARO:
+			case Figura.COLOR_GRIS_CLARO:
 				this.color = Color.LIGHT_GRAY;
 				break;
 			default:

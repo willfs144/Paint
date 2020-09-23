@@ -5,6 +5,10 @@ import java.awt.Shape;
 
 public class Figura extends Elemento{
 	
+	public static final String LINEA = "linea";
+	public static final String RECTANGULO = "rectangulo";
+	public static final String CIRCULO = "circulo";
+	public static final String LAPIZ = "lapiz";
 	
 	private String tipo;
 	private Color color;
@@ -57,7 +61,18 @@ public class Figura extends Elemento{
 		this.color = color;
 	}
 
-	
+	public static final String COLOR_NEGRO = "negro";
+	public static final String COLOR_AZUL = "azul";	
+	public static final String COLOR_VERDE = "verde";
+	public static final String COLOR_ROJO = "rojo";
+	public static final String COLOR_MAGENTA = "magenta";
+	public static final String COLOR_GRIS = "gris";
+	public static final String COLOR_NARANJA = "naranja";
+	public static final String COLOR_AMARILLO = "amarillo";
+	public static final String COLOR_ROSADO = "rosado";
+	public static final String COLOR_CIAN = "cian";
+	public static final String COLOR_GRIS_CLARO = "gris claro";
+	public static final String COLORPICKER = "colorPicker";
 	
 	
 	

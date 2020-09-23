@@ -44,7 +44,7 @@ public class VistaDibujo extends Canvas{
 		
 		g.drawImage(this.imagenPaint, 0 , 0, null);
 		
-		if (figura.getTipo().equals(modelo.FIGURA_LAPIZ)) {				
+		if (figura.getTipo().equals(Figura.LAPIZ)) {				
 			draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 			draw.setColor(figura.getColor());
 			draw.draw(forma);					
@@ -53,40 +53,40 @@ public class VistaDibujo extends Canvas{
 		int index=0;
 		for (Figura figura: figuras) {
 			
-			if (figura.getTipo().equals(modelo.FIGURA_LAPIZ)) {				
+			if (figura.getTipo().equals(Figura.LAPIZ)) {				
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
 				draw.draw(shapes.get(index));
 				index++;
 			}
 			
-			if (figura.getTipo().equals(modelo.FIGURA_LINEA)) {	
+			if (figura.getTipo().equals(Figura.LINEA)) {	
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
 				draw.drawLine(figura.getPosicionX1(),figura.getPosicionY1(),figura.getAncho(), figura.getAlto());				
 			}
 			
-			if (figura.getTipo().equals(modelo.FIGURA_RECTANGULO)) {
+			if (figura.getTipo().equals(Figura.RECTANGULO)) {
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
-				if (figura.getContexto().equals(modelo.ELEMENTO_COLOR_PINTURA))
+				if (figura.getContexto().equals(Figura.COLOR_PINTURA))
 					draw.fillRect(figura.getPosicionX1(), figura.getPosicionY1(), 
 							figura.getAncho(), figura.getAlto());
 				else
 					draw.drawRect(figura.getPosicionX1(), figura.getPosicionY1(), 
 							figura.getAncho(), figura.getAlto());
 			}
-			if (figura.getTipo().equals(modelo.FIGURA_CIRCULO)) {
+			if (figura.getTipo().equals(Figura.CIRCULO)) {
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
-				if (figura.getContexto().equals(modelo.ELEMENTO_COLOR_PINTURA))
+				if (figura.getContexto().equals(Figura.COLOR_PINTURA))
 					draw.fillOval(figura.getPosicionX1(), figura.getPosicionY1(), 
 							figura.getAncho(), figura.getAlto());
 				else
 					draw.drawOval(figura.getPosicionX1(), figura.getPosicionY1(), 
 							figura.getAncho(), figura.getAlto());				
 			}
-			if (figura.getTipo().equals(modelo.ELEMENTO_TEXTO)) {
+			if (figura.getTipo().equals(Figura.TEXTO)) {
 				draw.setStroke(new BasicStroke(figura.getGrosorBorde()));
 				draw.setColor(figura.getColor());
 				draw.drawString(figura.getContexto(), figura.getPosicionX1(), figura.getPosicionY1());	
