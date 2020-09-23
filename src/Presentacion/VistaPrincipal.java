@@ -39,12 +39,19 @@ public class VistaPrincipal extends JFrame {
 	public VistaPrincipal(Modelo modelo) {
 		this.modelo = modelo;
 		this.controladorPrincipal = new ControladorPrincipal(this);
+		
+		this.setLayout(new BorderLayout());
+		this.vistaDibujo = new VistaDibujo(modelo);
+		this.getContentPane().add(vistaDibujo, BorderLayout.CENTER);
+		this.vistaBotones = new VistaBotones(modelo);
+		this.getContentPane().add(vistaBotones, BorderLayout.NORTH);
+		this.vistaBotones.setLayout(new FlowLayout());	
 
-		iniciarInterfaz();		
+		agregarArchivoMenuInterfaz();		
 	}
 
 
-	private void iniciarInterfaz() {
+	private void agregarArchivoMenuInterfaz() {
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setTitle("Paint");
 		{
@@ -75,12 +82,7 @@ public class VistaPrincipal extends JFrame {
 			}
 		}
 		
-		this.setLayout(new BorderLayout());
-		this.vistaDibujo = new VistaDibujo(modelo);
-		this.getContentPane().add(vistaDibujo, BorderLayout.CENTER);
-		this.vistaBotones = new VistaBotones(modelo);
-		this.getContentPane().add(vistaBotones, BorderLayout.NORTH);
-		this.vistaBotones.setLayout(new FlowLayout());		
+			
 	}
 	
 	public void showDialogAbrir() {
