@@ -6,8 +6,6 @@ import java.awt.Shape;
 import java.util.ArrayList;
 
 public class Sistema {	
-
-	
 	
 	private Figura figura;
 	private ArrayList<Figura> figuras;
