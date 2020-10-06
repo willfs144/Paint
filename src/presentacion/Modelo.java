@@ -1,9 +1,9 @@
-package Presentacion;
+package presentacion;
 
 import java.awt.Color;
 
-import Logica.Figura;
-import Logica.Sistema;
+import logica.Figura;
+import logica.Sistema;
 
 public class Modelo {
 					

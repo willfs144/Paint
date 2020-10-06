@@ -1,4 +1,4 @@
-package Logica;
+package logica;
 
 import java.awt.Color;
 import java.awt.Rectangle;

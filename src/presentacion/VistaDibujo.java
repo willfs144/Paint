@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import java.awt.BasicStroke;
 import java.awt.Canvas;
@@ -11,7 +11,7 @@ import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import Logica.Figura;
+import logica.Figura;
 
 public class VistaDibujo extends Canvas{
 	

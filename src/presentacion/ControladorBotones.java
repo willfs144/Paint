@@ -1,11 +1,11 @@
-package Presentacion;
+package presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Logica.Figura;
+import logica.Figura;
 
 public class ControladorBotones implements ActionListener,ChangeListener{
 

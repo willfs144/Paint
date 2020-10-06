@@ -1,6 +1,6 @@
  package main;
 
-import Presentacion.Modelo;
+import presentacion.Modelo;
 
 public class Laucher {
 	
